@@ -18,7 +18,7 @@
 <meta name="author" content="Surfside Media">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 
-<title>SurfsideMedia</title>
+<title>SurfsideMedia | @yield('title')</title>
 
 <link id="rtl-link" rel="stylesheet" type="text/css" href="{{ asset('front') }}/assets/css/vendors/bootstrap.css">
 <link rel="stylesheet" href="{{ asset('front') }}/assets/css/vendors/ion.rangeSlider.min.css">

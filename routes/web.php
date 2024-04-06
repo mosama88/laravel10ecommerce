@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -18,6 +19,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [AppController::class, 'index'])->name('app.index') ;
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index') ;
 
 Auth::routes();
 

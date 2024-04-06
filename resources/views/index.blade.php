@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Home Page')
 @section('content')
     <section class="pt-0 poster-section">
         @include('layouts.slider')
