@@ -64,6 +64,8 @@
                                     </a>
                                 </div>
                             </li>
+
+                            {{-- Login And Register --}}
                             <li class="onhover-dropdown">
                                 <div class="cart-media name-usr mx-1">
                                     @auth

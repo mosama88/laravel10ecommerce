@@ -54,11 +54,7 @@
         </ul>
     </div>
 
-    <section class="pt-0 poster-section">
 
-        @include('layouts.slider')
-
-    </section>
 
     @yield('content')
 
