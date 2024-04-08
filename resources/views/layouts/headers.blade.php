@@ -42,5 +42,15 @@
             max-width: 110px !important;
         }
     }
+
+
+
+
+.product-box .product-details h5 {
+width: 100%;
+
+}
+
+
 </style>
 <link rel="stylesheet" href="{{ asset('front') }}/assets/css/custom.css">

@@ -7,7 +7,10 @@
 @section('content')
 
     @include('layouts.breadcrumb-section')
-
+    @php
+        $categories = App\Models\Category::get();
+        $brands = App\Models\Brand::get();
+    @endphp
 
     <!-- Shop Section start -->
     <section class="section-b-space">
@@ -30,17 +33,18 @@
                                     data-bs-parent="#accordionExample">
                                     <div class="accordion-body category-scroll">
                                         <ul class="category-list">
+                                            @foreach ($brands as $brand)
+                                                <li>
+                                                    <div class="form-check ps-0 custome-form-check">
+                                                        <input class="checkbox_animated check-it" id="br1"
+                                                            name="brands" value="1" type="checkbox">
+                                                        <label class="form-check-label">{{ $brand->name }}</label>
+                                                        <p class="font-light">(1)</p>
+                                                    </div>
+                                                </li>
+                                            @endforeach
 
-                                            <li>
-                                                <div class="form-check ps-0 custome-form-check">
-                                                    <input class="checkbox_animated check-it" id="br1" name="brands"
-                                                        value="1" type="checkbox">
-                                                    <label class="form-check-label">Quis Et</label>
-                                                    <p class="font-light">(1)</p>
-                                                </div>
-                                            </li>
-
-                                            <li>
+                                            {{-- <li>
                                                 <div class="form-check ps-0 custome-form-check">
                                                     <input class="checkbox_animated check-it" id="br2" name="brands"
                                                         value="2" type="checkbox">
@@ -119,7 +123,7 @@
                                                     <label class="form-check-label">Sunt Corrupti</label>
                                                     <p class="font-light">(3)</p>
                                                 </div>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -248,60 +252,17 @@
                                     aria-labelledby="headingOne">
                                     <div class="accordion-body category-scroll">
                                         <ul class="category-list">
+                                            @foreach ($categories as $category)
+                                                <li>
+                                                    <div class="form-check ps-0 custome-form-check">
+                                                        <input class="checkbox_animated check-it" id="ct1"
+                                                            name="categories" type="checkbox" value="1">
+                                                        <label class="form-check-label">{{ $category->name }}</label>
+                                                        <p class="font-light">(7)</p>
+                                                    </div>
+                                                </li>
+                                            @endforeach
 
-                                            <li>
-                                                <div class="form-check ps-0 custome-form-check">
-                                                    <input class="checkbox_animated check-it" id="ct1"
-                                                        name="categories" type="checkbox" value="1">
-                                                    <label class="form-check-label">Qui Ut</label>
-                                                    <p class="font-light">(7)</p>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 custome-form-check">
-                                                    <input class="checkbox_animated check-it" id="ct2"
-                                                        name="categories" type="checkbox" value="2">
-                                                    <label class="form-check-label">Blanditiis Error</label>
-                                                    <p class="font-light">(8)</p>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 custome-form-check">
-                                                    <input class="checkbox_animated check-it" id="ct3"
-                                                        name="categories" type="checkbox" value="3">
-                                                    <label class="form-check-label">Quam Quos</label>
-                                                    <p class="font-light">(0)</p>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 custome-form-check">
-                                                    <input class="checkbox_animated check-it" id="ct4"
-                                                        name="categories" type="checkbox" value="4">
-                                                    <label class="form-check-label">Cupiditate Minus</label>
-                                                    <p class="font-light">(5)</p>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 custome-form-check">
-                                                    <input class="checkbox_animated check-it" id="ct5"
-                                                        name="categories" type="checkbox" value="5">
-                                                    <label class="form-check-label">Dolores Et</label>
-                                                    <p class="font-light">(4)</p>
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <div class="form-check ps-0 custome-form-check">
-                                                    <input class="checkbox_animated check-it" id="ct6"
-                                                        name="categories" type="checkbox" value="6">
-                                                    <label class="form-check-label">Quis Repudiandae</label>
-                                                    <p class="font-light">(0)</p>
-                                                </div>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -425,13 +386,13 @@
                                 <div class="product-box">
                                     <div class="img-wrapper">
                                         <div class="front">
-                                            <a href="product/nihil-beatae-sit-sed.html">
+                                            <a href="{{ route('shop.product.details', ['slug' => $product->slug]) }}">
                                                 <img src="{{ asset('front') }}/assets/images/fashion/product/front/{{ $product->image }}"
                                                     class="bg-img blur-up lazyload" alt="">
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="product/nihil-beatae-sit-sed.html">
+                                            <a href="{{ route('shop.product.details', ['slug' => $product->slug]) }}">
                                                 <img src="{{ asset('front') }}/assets/images/fashion/product/back/{{ $product->image }}"
                                                     class="bg-img blur-up lazyload" alt="">
                                             </a>
@@ -478,7 +439,8 @@
                                             </ul>
                                         </div>
                                         <div class="main-price">
-                                            <a href="product/nihil-beatae-sit-sed.html" class="font-default">
+                                            <a href="{{ route('shop.product.details', ['slug' => $product->slug]) }}"
+                                                class="font-default">
                                                 <h5 class="ms-0">{{ $product->name }}</h5>
                                             </a>
                                             <div class="listing-content">
@@ -492,37 +454,9 @@
                                 </div>
                             </div>
                         @endforeach
-
-
-
                     </div>
-                    <nav class="page-section">
 
-                        <ul class="pagination">
-                            {{-- <li class="page-item">
-                                <a class="page-link" href="javascript:void(0)" aria-label="Previous"
-                                style="color:#6c757d;">
-                                <span aria-hidden="true">
-                                    <i class="fas fa-chevron-left"></i>
-                                </span>
-                            </a>
-                        </li> --}}
-
-
-
-
-                            {{-- <li class="page-item">
-                            <a href="shop-1.html?page=2" class="page-link" aria-label="Next">
-                                <span aria-hidden="true">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </li> --}}
-                            {{ $products->render('pagination::bootstrap-5') }}
-
-                        </ul>
-                    </nav>
-
+                    {{ $products->links('pagination.default') }}
                 </div>
             </div>
         </div>
@@ -539,7 +473,6 @@
                             and fantastic Products.</h6>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6 mt-md-0 mt-3">
                     <div class="subsribe-input">
                         <div class="input-group">
